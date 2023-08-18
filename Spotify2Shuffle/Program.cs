@@ -23,6 +23,10 @@ namespace SpotifyDownloader
         const string spotify_pattern = @"(https?:\/\/open.spotify.com\/(track|playlist|artist|album)\/[a-zA-Z0-9]+(\/playlist\/[a-zA-Z0-9]+|)|spotify:(track|playlist|artist|album):[a-zA-Z0-9]+(:playlist:[a-zA-Z0-9]+|))";
         static async Task Main(string[] args)
 		{
+            using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/ch020/SpotifyDownloader"))
+            {
+                await mgr.Result.UpdateApp();
+            }
             ProgramStart:
             AnsiConsole.Clear();
             string type = "track";
